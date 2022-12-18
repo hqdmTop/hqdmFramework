@@ -1,0 +1,1204 @@
+SCHEMA HQDM_FRAMEWORK 'Version 1.0';
+
+  TYPE participant_in_activity_or_association = SELECT
+    (activity,
+     association);
+  END_TYPE;
+
+  ENTITY thing
+    SUPERTYPE OF (ONEOF(spatio_temporal_extent, abstract_object));
+      member__of : OPTIONAL SET [1:?] OF class;
+  END_ENTITY;
+
+  ENTITY spatio_temporal_extent
+    SUBTYPE OF(thing);
+      part__of               : OPTIONAL SET [1:?] OF spatio_temporal_extent;
+      beginning              : OPTIONAL event;
+      ending                 : OPTIONAL event;
+      part_of_possible_world : SET [1:?] OF possible_world;
+      member_of              : OPTIONAL SET [1:?] OF class_of_spatio_temporal_extent;
+      temporal__part_of      : OPTIONAL SET [1:?] OF spatio_temporal_extent;
+      aggregated_into        : OPTIONAL SET [1:?] OF spatio_temporal_extent;
+    INVERSE
+      consists__of           : SET OF spatio_temporal_extent FOR part__of;
+  END_ENTITY;
+
+  ENTITY state
+    SUBTYPE OF(spatio_temporal_extent);
+      temporal_part_of                      : OPTIONAL SET [1:?] OF individual;
+      SELF\spatio_temporal_extent.member_of : OPTIONAL SET [1:?] OF class_of_state;
+  END_ENTITY;
+
+  ENTITY individual
+    SUBTYPE OF(state);
+      SELF\state.member_of : OPTIONAL SET [1:?] OF class_of_individual;
+      member_of_kind       : OPTIONAL SET [1:?] OF kind_of_individual;
+  END_ENTITY;
+
+  ENTITY physical_object
+    SUBTYPE OF(individual, state_of_physical_object);
+      SELF\individual.member_of      : OPTIONAL SET [1:?] OF class_of_physical_object;
+      SELF\individual.member_of_kind : OPTIONAL SET [1:?] OF kind_of_physical_object;
+  END_ENTITY;
+
+  ENTITY state_of_physical_object
+    SUBTYPE OF(state);
+      SELF\state.temporal_part_of : OPTIONAL SET [1:?] OF physical_object;
+      SELF\state.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_physical_object;
+  END_ENTITY;
+
+  ENTITY state_of_ordinary_physical_object
+    SUBTYPE OF(state_of_physical_object);
+      SELF\state_of_physical_object.temporal_part_of : OPTIONAL SET [1:?] OF ordinary_physical_object;
+      SELF\state_of_physical_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_ordinary_physical_object;
+  END_ENTITY;
+
+  ENTITY ordinary_physical_object
+    SUBTYPE OF(physical_object, state_of_ordinary_physical_object);
+      SELF\physical_object.member_of      : OPTIONAL SET [1:?] OF class_of_ordinary_physical_object;
+      SELF\physical_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_ordinary_physical_object;
+  END_ENTITY;
+
+  ENTITY system
+    SUBTYPE OF(state_of_system, ordinary_physical_object);
+      SELF\state_of_system.member_of               : OPTIONAL SET [1:?] OF class_of_system;
+      SELF\ordinary_physical_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_system;
+  END_ENTITY;
+
+  ENTITY state_of_system
+    SUBTYPE OF(state_of_ordinary_physical_object);
+      SELF\state_of_ordinary_physical_object.temporal_part_of : OPTIONAL SET [1:?] OF system;
+      SELF\state_of_ordinary_physical_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_system;
+  END_ENTITY;
+
+  ENTITY state_of_functional_system
+    SUBTYPE OF(state_of_system, state_of_ordinary_functional_object);
+      SELF\state_of_system.temporal_part_of : OPTIONAL SET [1:?] OF functional_system;
+      SELF\state_of_system.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_functional_system;
+  END_ENTITY;
+
+  ENTITY state_of_ordinary_functional_object
+    SUBTYPE OF(state_of_functional_object, state_of_ordinary_physical_object);
+      SELF\state_of_functional_object.temporal_part_of : OPTIONAL SET [1:?] OF ordinary_functional_object;
+      SELF\state_of_functional_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_ordinary_functional_object;
+  END_ENTITY;
+
+  ENTITY state_of_functional_object
+    SUBTYPE OF(state_of_intentionally_constructed_object, state_of_physical_object);
+      SELF\state_of_intentionally_constructed_object.temporal_part_of : OPTIONAL SET [1:?] OF functional_object;
+      SELF\state_of_intentionally_constructed_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_functional_object;
+  END_ENTITY;
+
+  ENTITY state_of_intentionally_constructed_object
+    SUBTYPE OF(state);
+      SELF\state.temporal_part_of : OPTIONAL SET [1:?] OF intentionally_constructed_object;
+      SELF\state.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_intentionally_constructed_object;
+  END_ENTITY;
+
+  ENTITY intentionally_constructed_object
+    SUBTYPE OF(individual, state_of_intentionally_constructed_object);
+      SELF\individual.member_of      : OPTIONAL SET [1:?] OF class_of_intentionally_constructed_object;
+      SELF\individual.member_of_kind : OPTIONAL SET [1:?] OF kind_of_intentionally_constructed_object;
+  END_ENTITY;
+
+  ENTITY functional_object
+    SUBTYPE OF(intentionally_constructed_object, state_of_functional_object, physical_object);
+      SELF\intentionally_constructed_object.member_of      : OPTIONAL SET [1:?] OF class_of_functional_object;
+      intended_role                                        : SET [1:?] OF role;
+      SELF\intentionally_constructed_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_functional_object;
+  END_ENTITY;
+
+  ENTITY functional_system_component
+    SUBTYPE OF(functional_object, state_of_functional_system_component, system_component);
+      SELF\system_component.component_of    : SET [1:1] OF functional_system;
+      SELF\functional_object.member_of      : OPTIONAL SET [1:?] OF class_of_functional_system_component;
+      SELF\functional_object.member_of_kind : SET [1:?] OF kind_of_functional_system_component;
+  END_ENTITY;
+
+  ENTITY state_of_functional_system_component
+    SUBTYPE OF(state_of_functional_object, state_of_system_component);
+      SELF\state_of_functional_object.temporal_part_of : OPTIONAL SET [1:?] OF functional_system_component;
+      SELF\state_of_functional_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_functional_system_component;
+  END_ENTITY;
+
+  ENTITY state_of_system_component
+    SUBTYPE OF(state_of_physical_object);
+      SELF\state_of_physical_object.temporal_part_of : OPTIONAL SET [1:?] OF system_component;
+      SELF\state_of_physical_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_system_component;
+  END_ENTITY;
+
+  ENTITY system_component
+    SUBTYPE OF(physical_object, state_of_system_component);
+      component_of                   : SET [1:1] OF system;
+      SELF\physical_object.member_of : OPTIONAL SET [1:?] OF class_of_system_component;
+  END_ENTITY;
+
+  ENTITY biological_system_component
+    SUBTYPE OF(biological_object, state_of_biological_system_component, system_component);
+      SELF\system_component.component_of : SET [1:1] OF biological_system;
+      SELF\biological_object.member_of   : OPTIONAL SET [1:?] OF class_of_biological_system_component;
+  END_ENTITY;
+
+  ENTITY biological_object
+    SUBTYPE OF(state_of_biological_object, physical_object);
+      SELF\state_of_biological_object.member_of : OPTIONAL SET [1:?] OF class_of_biological_object;
+      SELF\physical_object.member_of_kind       : OPTIONAL SET [1:?] OF kind_of_biological_object;
+  END_ENTITY;
+
+  ENTITY state_of_biological_object
+    SUBTYPE OF(state_of_physical_object);
+      SELF\state_of_physical_object.temporal_part_of : OPTIONAL SET [1:?] OF biological_object;
+      SELF\state_of_physical_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_biological_object;
+  END_ENTITY;
+
+  ENTITY state_of_ordinary_biological_object
+    SUBTYPE OF(state_of_biological_object, state_of_ordinary_physical_object);
+      SELF\state_of_biological_object.temporal_part_of : OPTIONAL SET [1:?] OF ordinary_biological_object;
+      SELF\state_of_biological_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_ordinary_biological_object;
+  END_ENTITY;
+
+  ENTITY ordinary_biological_object
+    SUBTYPE OF(state_of_ordinary_biological_object, biological_object, ordinary_physical_object);
+      SELF\state_of_ordinary_biological_object.member_of : OPTIONAL SET [1:?] OF class_of_ordinary_biological_object;
+      SELF\biological_object.member_of_kind              : OPTIONAL SET [1:?] OF kind_of_ordinary_biological_object;
+  END_ENTITY;
+
+  ENTITY biological_system
+    SUBTYPE OF(ordinary_biological_object, state_of_biological_system, system);
+      SELF\ordinary_biological_object.member_of      : OPTIONAL SET [1:?] OF class_of_biological_system;
+      natural_role                                   : role;
+      SELF\ordinary_biological_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_biological_system;
+  END_ENTITY;
+
+  ENTITY state_of_biological_system
+    SUBTYPE OF(state_of_ordinary_biological_object, state_of_system);
+      SELF\state_of_ordinary_biological_object.temporal_part_of : OPTIONAL SET [1:?] OF biological_system;
+      SELF\state_of_ordinary_biological_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_biological_system;
+  END_ENTITY;
+
+  ENTITY state_of_person
+    SUBTYPE OF(state_of_biological_system, state_of_party);
+      SELF\state_of_biological_system.temporal_part_of : OPTIONAL SET [1:?] OF person;
+      SELF\state_of_biological_system.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_person;
+  END_ENTITY;
+
+  ENTITY state_of_party
+    ABSTRACT
+    SUBTYPE OF(state_of_system);
+      SELF\state_of_system.temporal_part_of : OPTIONAL SET [1:?] OF party;
+      SELF\state_of_system.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_party;
+  END_ENTITY;
+
+  ENTITY party
+    ABSTRACT
+    SUBTYPE OF(state_of_party, system);
+      SELF\state_of_party.member_of : OPTIONAL SET [1:?] OF class_of_party;
+      SELF\system.member_of_kind    : OPTIONAL SET [1:?] OF kind_of_party;
+  END_ENTITY;
+
+  ENTITY organization
+    SUBTYPE OF(state_of_organization, party, socially_constructed_object);
+      SELF\state_of_organization.member_of : OPTIONAL SET [1:?] OF class_of_organization;
+      SELF\party.member_of_kind            : OPTIONAL SET [1:?] OF kind_of_organization;
+  END_ENTITY;
+
+  ENTITY state_of_organization
+    SUBTYPE OF(state_of_party, state_of_socially_constructed_object);
+      SELF\state_of_party.temporal_part_of : OPTIONAL SET [1:?] OF organization;
+      SELF\state_of_party.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_organization;
+  END_ENTITY;
+
+  ENTITY state_of_socially_constructed_object
+    SUBTYPE OF(state_of_intentionally_constructed_object);
+      SELF\state_of_intentionally_constructed_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_socially_constructed_object;
+      SELF\state_of_intentionally_constructed_object.temporal_part_of : OPTIONAL SET [1:?] OF socially_constructed_object;
+  END_ENTITY;
+
+  ENTITY socially_constructed_object
+    SUBTYPE OF(intentionally_constructed_object, state_of_socially_constructed_object);
+      SELF\intentionally_constructed_object.member_of      : OPTIONAL SET [1:?] OF class_of_socially_contructed_object;
+      SELF\intentionally_constructed_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_socially_constructed_object;
+  END_ENTITY;
+
+  ENTITY amount_of_money
+    SUBTYPE OF(state_of_amount_of_money, socially_constructed_object, physical_object);
+      SELF\state_of_amount_of_money.member_of : OPTIONAL SET [1:?] OF class_of_amount_of_money;
+      member_of_currency                      : OPTIONAL SET [1:1] OF currency;
+  END_ENTITY;
+
+  ENTITY state_of_amount_of_money
+    SUBTYPE OF(state_of_socially_constructed_object, state_of_physical_object);
+      SELF\state_of_socially_constructed_object.temporal_part_of : OPTIONAL SET [1:1] OF amount_of_money;
+      SELF\state_of_socially_constructed_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_amount_of_money;
+  END_ENTITY;
+
+  ENTITY money_asset
+    SUBTYPE OF(asset, state_of_amount_of_money);
+  END_ENTITY;
+
+  ENTITY asset
+    SUBTYPE OF(participant);
+      SELF\participant.participant_in : SET [1:1] OF ownership;
+  END_ENTITY;
+
+  ENTITY participant
+    SUBTYPE OF(state_of_physical_object);
+      SELF\state_of_physical_object.member_of : OPTIONAL SET [1:?] OF class_of_participant;
+      member_of_kind                          : SET [1:?] OF role;
+      participant_in                          : OPTIONAL SET [1:?] OF participant_in_activity_or_association;
+  END_ENTITY;
+
+  ENTITY owner
+    SUBTYPE OF(state_of_party, participant);
+      SELF\participant.participant_in : SET [1:1] OF ownership;
+  END_ENTITY;
+
+  ENTITY activity
+    SUBTYPE OF(individual, state_of_activity);
+      references                     : OPTIONAL SET [1:?] OF thing;
+      determines                     : OPTIONAL SET [1:?] OF thing;
+      causes                         : SET [1:?] OF event;
+      SELF\individual.member_of      : OPTIONAL SET [1:?] OF class_of_activity;
+      part_of                        : OPTIONAL SET [1:?] OF activity;
+      SELF\individual.member_of_kind : SET [1:?] OF kind_of_activity;
+    INVERSE
+      consists_of                    : SET OF activity FOR part_of;
+      consists_of_participant        : SET [1:?] OF participant FOR participant_in;
+  END_ENTITY;
+
+  ENTITY state_of_activity
+    SUBTYPE OF(state);
+      SELF\state.temporal_part_of : OPTIONAL SET [1:?] OF activity;
+      SELF\state.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_activity;
+  END_ENTITY;
+
+  ENTITY state_of_socially_constructed_activity
+    SUBTYPE OF(state_of_socially_constructed_object, state_of_activity);
+  END_ENTITY;
+
+  ENTITY class_of_spatio_temporal_extent
+    SUBTYPE OF(class);
+      member_of_            : OPTIONAL SET [1:?] OF class_of_class_of_spatio_temporal_extent;
+      part__of_by_class     : OPTIONAL SET [1:?] OF class_of_spatio_temporal_extent;
+    INVERSE
+      consists__of_by_class : SET [1:?] OF class_of_spatio_temporal_extent FOR part__of_by_class;
+  END_ENTITY;
+
+  ENTITY class
+    SUPERTYPE OF (ONEOF(class_of_spatio_temporal_extent, class_of_abstract_object) ANDOR enumerated_class)
+    SUBTYPE OF(abstract_object);
+      member_of      : OPTIONAL SET [1:?] OF class_of_class;
+      has_superclass : OPTIONAL SET [1:?] OF class;
+  END_ENTITY;
+
+  ENTITY abstract_object
+    SUPERTYPE OF (ONEOF(class, relationship))
+    SUBTYPE OF(thing);
+  END_ENTITY;
+
+  ENTITY relationship
+    ABSTRACT
+    SUPERTYPE OF (ONEOF(classification, aggregation, specialization, defined_relationship, function_))
+    SUBTYPE OF(abstract_object);
+      member_of : OPTIONAL SET [1:?] OF class_of_relationship;
+  END_ENTITY;
+
+  ENTITY classification
+    SUBTYPE OF(relationship);
+      classifier : class;
+      member     : thing;
+  END_ENTITY;
+
+  ENTITY aggregation
+    SUBTYPE OF(relationship);
+      whole : spatio_temporal_extent;
+      part  : spatio_temporal_extent;
+  END_ENTITY;
+
+  ENTITY composition
+    SUBTYPE OF(aggregation);
+  END_ENTITY;
+
+  ENTITY temporal_composition
+    SUBTYPE OF(composition);
+  END_ENTITY;
+
+  ENTITY specialization
+    SUBTYPE OF(relationship);
+      superclass : class;
+      subclass   : class;
+  END_ENTITY;
+
+  ENTITY defined_relationship
+    SUBTYPE OF(relationship);
+      member_of_kind : SET [1:1] OF kind_of_relationship_with_signature;
+      involves       : BAG [2:?] OF classification;
+  END_ENTITY;
+
+  ENTITY kind_of_relationship_with_signature
+    SUBTYPE OF(class_of_relationship);
+      roles : BAG [2:?] OF class;
+  END_ENTITY;
+
+  ENTITY class_of_relationship
+    SUBTYPE OF(class_of_abstract_object);
+  END_ENTITY;
+
+  ENTITY class_of_abstract_object
+    SUPERTYPE OF (ONEOF(class_of_relationship, class_of_class))
+    SUBTYPE OF(class);
+  END_ENTITY;
+
+  ENTITY class_of_class
+    SUBTYPE OF(class_of_abstract_object);
+  END_ENTITY;
+
+  ENTITY class_of_class_of_spatio_temporal_extent
+    SUBTYPE OF(class_of_class);
+  END_ENTITY;
+
+  ENTITY class_of_physical_property
+    SUBTYPE OF(class_of_class_of_spatio_temporal_extent);
+  END_ENTITY;
+
+  ENTITY kind_of_physical_property
+    SUBTYPE OF(class_of_physical_property);
+  END_ENTITY;
+
+  ENTITY kind_of_physical_quantity
+    SUBTYPE OF(class_of_physical_quantity, kind_of_physical_property);
+  END_ENTITY;
+
+  ENTITY class_of_physical_quantity
+    SUBTYPE OF(class_of_physical_property);
+  END_ENTITY;
+
+  ENTITY kind_of_relationship_with_restriction
+    SUBTYPE OF(kind_of_relationship_with_signature);
+      required_role_player : SET [1:?] OF classification;
+  END_ENTITY;
+
+  ENTITY function_
+    SUBTYPE OF(relationship);
+  END_ENTITY;
+
+  ENTITY scale
+    SUBTYPE OF(function_);
+      unit   : OPTIONAL unit_of_measure;
+      domain : kind_of_physical_quantity;
+  END_ENTITY;
+
+  ENTITY unit_of_measure
+    SUBTYPE OF(function_);
+  END_ENTITY;
+
+  ENTITY enumerated_class
+    SUBTYPE OF(class);
+  END_ENTITY;
+
+  ENTITY class_of_state
+    SUBTYPE OF(class_of_spatio_temporal_extent);
+  END_ENTITY;
+
+  ENTITY class_of_individual
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_physical_object
+    SUBTYPE OF(class_of_individual, class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_physical_object
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_biological_object
+    SUBTYPE OF(class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_biological_object
+    SUBTYPE OF(class_of_state_of_biological_object, class_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_ordinary_biological_object
+    SUBTYPE OF(class_of_biological_object, class_of_state_of_ordinary_biological_object, class_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_ordinary_biological_object
+    SUBTYPE OF(class_of_state_of_biological_object, class_of_state_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_ordinary_physical_object
+    SUBTYPE OF(class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_ordinary_physical_object
+    SUBTYPE OF(class_of_state_of_ordinary_physical_object, class_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_system
+    SUBTYPE OF(class_of_state_of_system, class_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_system
+    SUBTYPE OF(class_of_state_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_biological_system
+    SUBTYPE OF(class_of_state_of_ordinary_biological_object, class_of_state_of_system);
+  END_ENTITY;
+
+  ENTITY class_of_biological_system
+    SUBTYPE OF(class_of_state_of_biological_system, class_of_ordinary_biological_object, class_of_system);
+  END_ENTITY;
+
+  ENTITY class_of_person
+    SUBTYPE OF(class_of_biological_system, class_of_state_of_person, class_of_party);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_person
+    SUBTYPE OF(class_of_state_of_biological_system, class_of_state_of_party);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_party
+    SUBTYPE OF(class_of_state_of_system);
+  END_ENTITY;
+
+  ENTITY class_of_party
+    SUBTYPE OF(class_of_system, class_of_state_of_party);
+  END_ENTITY;
+
+  ENTITY kind_of_party
+    SUBTYPE OF(class_of_party, kind_of_system);
+  END_ENTITY;
+
+  ENTITY kind_of_system
+    SUBTYPE OF(class_of_system, kind_of_ordinary_physical_object);
+      has_component_by_class : SET [1:?] OF kind_of_system_component;
+  END_ENTITY;
+
+  ENTITY kind_of_ordinary_physical_object
+    SUBTYPE OF(class_of_ordinary_physical_object, kind_of_physical_object);
+  END_ENTITY;
+
+  ENTITY kind_of_physical_object
+    SUBTYPE OF(class_of_physical_object, kind_of_individual);
+  END_ENTITY;
+
+  ENTITY kind_of_individual
+    SUBTYPE OF(class_of_individual);
+  END_ENTITY;
+
+  ENTITY kind_of_intentionally_constructed_object
+    SUBTYPE OF(class_of_intentionally_constructed_object, kind_of_individual);
+  END_ENTITY;
+
+  ENTITY class_of_intentionally_constructed_object
+    SUBTYPE OF(class_of_individual, class_of_state_of_intentionally_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_intentionally_constructed_object
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_functional_object
+    SUBTYPE OF(class_of_state_of_physical_object, class_of_state_of_intentionally_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_functional_object
+    SUBTYPE OF(class_of_physical_object, class_of_intentionally_constructed_object, class_of_state_of_functional_object);
+  END_ENTITY;
+
+  ENTITY class_of_ordinary_functional_object
+    SUBTYPE OF(class_of_state_of_ordinary_functional_object, class_of_functional_object, class_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_ordinary_functional_object
+    SUBTYPE OF(class_of_state_of_functional_object, class_of_state_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_functional_system
+    SUBTYPE OF(class_of_state_of_ordinary_functional_object, class_of_state_of_system);
+  END_ENTITY;
+
+  ENTITY class_of_functional_system
+    SUBTYPE OF(class_of_state_of_functional_system, class_of_ordinary_functional_object, class_of_system);
+  END_ENTITY;
+
+  ENTITY kind_of_functional_system
+    SUBTYPE OF(class_of_functional_system, kind_of_system);
+      SELF\kind_of_system.has_component_by_class : SET [1:?] OF kind_of_functional_system_component;
+  END_ENTITY;
+
+  ENTITY kind_of_system_component
+    SUBTYPE OF(class_of_system_component, kind_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_system_component
+    SUBTYPE OF(class_of_state_of_system_component, class_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_system_component
+    SUBTYPE OF(class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_installed_object
+    SUBTYPE OF(class_of_state_of_system_component, class_of_state_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_in_place_biological_component
+    SUBTYPE OF(class_of_state_of_biological_system_component, class_of_state_of_ordinary_biological_object, class_of_installed_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_biological_system_component
+    SUBTYPE OF(class_of_state_of_biological_object, class_of_state_of_system_component);
+  END_ENTITY;
+
+  ENTITY class_of_biological_system_component
+    SUBTYPE OF(class_of_biological_object, class_of_state_of_biological_system_component, class_of_system_component);
+  END_ENTITY;
+
+  ENTITY kind_of_biological_system_component
+    SUBTYPE OF(class_of_biological_system_component, kind_of_system_component);
+  END_ENTITY;
+
+  ENTITY class_of_installed_functional_system_component
+    SUBTYPE OF(class_of_state_of_functional_system_component, class_of_installed_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_functional_system_component
+    SUBTYPE OF(class_of_state_of_ordinary_functional_object, class_of_state_of_system_component);
+  END_ENTITY;
+
+  ENTITY class_of_functional_system_component
+    SUBTYPE OF(class_of_state_of_functional_system_component, class_of_system_component);
+  END_ENTITY;
+
+  ENTITY kind_of_functional_system_component
+    SUBTYPE OF(class_of_functional_system_component, kind_of_system_component);
+  END_ENTITY;
+
+  ENTITY class_of_person_in_position
+    SUBTYPE OF(class_of_installed_object, class_of_state_of_position);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_position
+    SUBTYPE OF(class_of_state_of_organization_component);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_organization_component
+    SUBTYPE OF(class_of_state_of_system_component, class_of_state_of_socially_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_socially_constructed_object
+    SUBTYPE OF(class_of_state_of_intentionally_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_socially_contructed_object
+    SUBTYPE OF(class_of_intentionally_constructed_object, class_of_state_of_socially_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_organization
+    SUBTYPE OF(class_of_state_of_organization, class_of_socially_contructed_object, class_of_party);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_organization
+    SUBTYPE OF(class_of_state_of_socially_constructed_object, class_of_state_of_party);
+  END_ENTITY;
+
+  ENTITY kind_of_organization
+    SUBTYPE OF(class_of_organization, kind_of_party, kind_of_socially_constructed_object);
+      component_by_class : SET [1:1] OF kind_of_organization_component;
+  END_ENTITY;
+
+  ENTITY kind_of_socially_constructed_object
+    SUBTYPE OF(class_of_socially_contructed_object, kind_of_intentionally_constructed_object);
+  END_ENTITY;
+
+  ENTITY kind_of_organization_component
+    SUBTYPE OF(class_of_organization_component, kind_of_system_component, kind_of_socially_constructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_organization_component
+    SUBTYPE OF(class_of_state_of_organization_component, class_of_system_component, class_of_socially_contructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_position
+    SUBTYPE OF(class_of_state_of_position, class_of_organization_component);
+  END_ENTITY;
+
+  ENTITY kind_of_position
+    SUBTYPE OF(class_of_position, kind_of_organization_component);
+  END_ENTITY;
+
+  ENTITY class_of_amount_of_money
+    SUBTYPE OF(class_of_state_of_amount_of_money, class_of_socially_contructed_object, class_of_physical_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_amount_of_money
+    SUBTYPE OF(class_of_state_of_socially_constructed_object, class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY currency
+    SUBTYPE OF(class_of_amount_of_money);
+  END_ENTITY;
+
+  ENTITY price
+    SUBTYPE OF(class_of_amount_of_money);
+  END_ENTITY;
+
+  ENTITY class_of_socially_constructed_activity
+    SUBTYPE OF(class_of_activity, class_of_socially_contructed_object);
+      part_of_by_class  : OPTIONAL SET [1:?] OF class_of_reaching_agreement;
+      part_of_by_class_ : OPTIONAL SET [1:?] OF class_of_agreement_execution;
+  END_ENTITY;
+
+  ENTITY class_of_activity
+    SUBTYPE OF(class_of_individual, class_of_state_of_activity);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_activity
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_socially_constructed_activity
+    SUBTYPE OF(class_of_state_of_socially_constructed_object, class_of_state_of_activity);
+  END_ENTITY;
+
+  ENTITY kind_of_activity
+    SUBTYPE OF(class_of_activity);
+      determines_by_class  : OPTIONAL SET [1:?] OF class;
+      references_by_class  : OPTIONAL SET [1:?] OF class;
+      causes_by_class      : OPTIONAL SET [1:?] OF class_of_event;
+    INVERSE
+      consists_of_by_class : SET [1:?] OF role FOR part_of_by_class;
+  END_ENTITY;
+
+  ENTITY class_of_event
+    SUBTYPE OF(class_of_spatio_temporal_extent);
+  END_ENTITY;
+
+  ENTITY class_of_point_in_time
+    SUBTYPE OF(class_of_event);
+  END_ENTITY;
+
+  ENTITY role
+    SUBTYPE OF(class_of_participant);
+      part_of_by_class  : OPTIONAL SET [1:?] OF kind_of_activity;
+      part_of_by_class_ : OPTIONAL SET [1:?] OF kind_of_association;
+  END_ENTITY;
+
+  ENTITY class_of_participant
+    SUBTYPE OF(class_of_state_of_physical_object);
+  END_ENTITY;
+
+  ENTITY kind_of_association
+    SUBTYPE OF(class_of_association);
+    INVERSE
+      consists_of_by_class : SET [2:?] OF role FOR part_of_by_class_;
+  END_ENTITY;
+
+  ENTITY class_of_association
+    SUBTYPE OF(class_of_individual, class_of_state_of_association);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_association
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_agreement_process
+    SUBTYPE OF(class_of_socially_constructed_activity);
+  END_ENTITY;
+
+  ENTITY class_of_contract_process
+    SUBTYPE OF(class_of_agreement_process);
+  END_ENTITY;
+
+  ENTITY class_of_reaching_agreement
+    SUBTYPE OF(class_of_socially_constructed_activity);
+      SELF\class_of_socially_constructed_activity.part_of_by_class : OPTIONAL SET [1:?] OF class_of_agreement_process;
+  END_ENTITY;
+
+  ENTITY class_of_agree_contract
+    SUBTYPE OF(class_of_reaching_agreement);
+      SELF\class_of_reaching_agreement.part_of_by_class : OPTIONAL SET [1:?] OF class_of_contract_process;
+  END_ENTITY;
+
+  ENTITY class_of_agreement_execution
+    SUBTYPE OF(class_of_socially_constructed_activity);
+      SELF\class_of_socially_constructed_activity.part_of_by_class : OPTIONAL SET [1:?] OF class_of_agreement_process;
+  END_ENTITY;
+
+  ENTITY class_of_contract_execution
+    SUBTYPE OF(class_of_agreement_execution);
+      SELF\class_of_agreement_execution.part_of_by_class : OPTIONAL SET [1:?] OF class_of_contract_process;
+  END_ENTITY;
+
+  ENTITY class_of_offer
+    SUBTYPE OF(class_of_socially_constructed_activity);
+  END_ENTITY;
+
+  ENTITY offering
+    SUBTYPE OF(class_of_offer);
+      class_of_offered       : class_of_individual;
+      consideration_by_class : price;
+      offeror                : party;
+      period_offered         : period_of_time;
+  END_ENTITY;
+
+  ENTITY product_offering
+    SUBTYPE OF(offering);
+      SELF\offering.class_of_offered : sales_product;
+  END_ENTITY;
+
+  ENTITY sales_product
+    SUBTYPE OF(class_of_sales_product_instance);
+      sold_under          : OPTIONAL SET [1:1] OF product_brand;
+      meets_specification : OPTIONAL SET [1:?] OF requirement_specification;
+  END_ENTITY;
+
+  ENTITY class_of_sales_product_instance
+    SUBTYPE OF(class_of_state_of_sales_product_instance, class_of_ordinary_functional_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_sales_product_instance
+    SUBTYPE OF(class_of_state_of_ordinary_functional_object);
+  END_ENTITY;
+
+  ENTITY product_brand
+    SUBTYPE OF(class_of_sales_product_instance);
+  END_ENTITY;
+
+  ENTITY sales_product_version
+    SUBTYPE OF(class_of_sales_product_instance);
+      sold_as   : OPTIONAL SET [1:1] OF sales_product;
+      successor : OPTIONAL sales_product_version;
+  END_ENTITY;
+
+  ENTITY requirement_specification
+    SUBTYPE OF(class_of_spatio_temporal_extent);
+      intersection_of : SET [1:?] OF class_of_state;
+  END_ENTITY;
+
+  ENTITY period_of_time
+    SUBTYPE OF(state);
+      temporal_part_of_    : OPTIONAL SET [1:?] OF possible_world;
+      SELF\state.member_of : OPTIONAL SET [1:?] OF class_of_period_of_time;
+  END_ENTITY;
+
+  ENTITY possible_world
+    SUBTYPE OF(individual, period_of_time);
+      SELF\individual.member_of : OPTIONAL SET [1:?] OF class_of_possible_world;
+  END_ENTITY;
+
+  ENTITY plan
+    SUBTYPE OF(possible_world);
+  END_ENTITY;
+
+  ENTITY class_of_possible_world
+    SUBTYPE OF(class_of_individual, class_of_period_of_time);
+  END_ENTITY;
+
+  ENTITY class_of_period_of_time
+    SUBTYPE OF(class_of_state);
+  END_ENTITY;
+
+  ENTITY class_of_sign
+    SUBTYPE OF(class_of_state_of_sign, class_of_socially_contructed_object);
+  END_ENTITY;
+
+  ENTITY class_of_state_of_sign
+    SUBTYPE OF(class_of_state_of_socially_constructed_object);
+  END_ENTITY;
+
+  ENTITY pattern
+    SUBTYPE OF(class_of_sign);
+  END_ENTITY;
+
+  ENTITY kind_of_ordinary_functional_object
+    SUBTYPE OF(class_of_ordinary_functional_object, kind_of_ordinary_physical_object, kind_of_functional_object);
+  END_ENTITY;
+
+  ENTITY kind_of_functional_object
+    SUBTYPE OF(class_of_functional_object, kind_of_physical_object, kind_of_intentionally_constructed_object);
+      intended_role_by_class : SET [1:?] OF role;
+  END_ENTITY;
+
+  ENTITY kind_of_biological_object
+    SUBTYPE OF(class_of_biological_object, kind_of_physical_object);
+  END_ENTITY;
+
+  ENTITY kind_of_ordinary_biological_object
+    SUBTYPE OF(class_of_ordinary_biological_object, kind_of_biological_object, kind_of_ordinary_physical_object);
+  END_ENTITY;
+
+  ENTITY kind_of_biological_system
+    SUBTYPE OF(class_of_biological_system, kind_of_system);
+      natural_role_by_class                      : role;
+      SELF\kind_of_system.has_component_by_class : SET [1:?] OF kind_of_biological_system_component;
+  END_ENTITY;
+
+  ENTITY kind_of_person
+    SUBTYPE OF(kind_of_party, class_of_person);
+  END_ENTITY;
+
+  ENTITY physical_property
+    SUBTYPE OF(class_of_state);
+      SELF\class.member_of : OPTIONAL SET [1:?] OF class_of_physical_property;
+      member_of_kind       : kind_of_physical_property;
+  END_ENTITY;
+
+  ENTITY physical_quantity
+    SUBTYPE OF(physical_property);
+      SELF\physical_property.member_of      : OPTIONAL SET [1:?] OF class_of_physical_quantity;
+      SELF\physical_property.member_of_kind : kind_of_physical_quantity;
+  END_ENTITY;
+
+  ENTITY physical_property_range
+    SUBTYPE OF(class_of_state);
+      ranges_over : SET [1:?] OF physical_property;
+  END_ENTITY;
+
+  ENTITY physical_quantity_range
+    SUBTYPE OF(physical_property_range);
+      upper_bound : physical_quantity;
+      lower_bound : physical_quantity;
+  END_ENTITY;
+
+  ENTITY socially_constructed_activity
+    SUBTYPE OF(activity, socially_constructed_object);
+      SELF\activity.member_of : OPTIONAL SET [1:?] OF class_of_socially_constructed_activity;
+      SELF\activity.part_of   : OPTIONAL SET [1:?] OF reaching_agreement;
+      part_of_                : OPTIONAL SET [1:?] OF agreement_execution;
+  END_ENTITY;
+
+  ENTITY agreement_process
+    SUBTYPE OF(socially_constructed_activity);
+      SELF\socially_constructed_activity.member_of : OPTIONAL SET [1:?] OF class_of_agreement_process;
+    INVERSE
+      consists_of_                                 : SET [1:?] OF agreement_execution FOR part_of;
+      SELF\activity.consists_of                    : SET [1:1] OF reaching_agreement FOR part_of;
+  END_ENTITY;
+
+  ENTITY contract_process
+    SUBTYPE OF(agreement_process);
+      SELF\agreement_process.member_of    : OPTIONAL SET [1:?] OF class_of_contract_process;
+    INVERSE
+      SELF\agreement_process.consists_of_ : SET [1:1] OF contract_execution FOR part_of;
+      SELF\agreement_process.consists_of  : SET [1:1] OF agree_contract FOR part_of;
+  END_ENTITY;
+
+  ENTITY sale_of_goods
+    SUBTYPE OF(contract_process);
+    INVERSE
+      SELF\contract_process.consists_of_ : SET [1:1] OF exchange_of_goods_and_money FOR part_of;
+      SELF\contract_process.consists_of  : SET [1:1] OF offer_and_acceptance_for_goods FOR part_of;
+  END_ENTITY;
+
+  ENTITY reaching_agreement
+    SUBTYPE OF(socially_constructed_activity);
+      SELF\socially_constructed_activity.member_of : OPTIONAL SET [1:?] OF class_of_reaching_agreement;
+      SELF\socially_constructed_activity.part_of   : SET [1:1] OF agreement_process;
+  END_ENTITY;
+
+  ENTITY agree_contract
+    SUBTYPE OF(reaching_agreement);
+      SELF\reaching_agreement.member_of : OPTIONAL SET [1:?] OF class_of_agree_contract;
+      SELF\reaching_agreement.part_of   : SET [1:1] OF contract_process;
+    INVERSE
+      consists_of_                      : SET [1:1] OF offer FOR part_of;
+      SELF\activity.consists_of         : SET [1:1] OF acceptance_of_offer FOR part_of;
+  END_ENTITY;
+
+  ENTITY offer_and_acceptance_for_goods
+    SUBTYPE OF(agree_contract);
+      SELF\agree_contract.part_of      : SET [1:1] OF sale_of_goods;
+    INVERSE
+      SELF\agree_contract.consists_of_ : SET [1:1] OF offer_for_goods FOR part_of;
+      SELF\agree_contract.consists_of  : SET [1:1] OF acceptance_of_offer_for_goods FOR part_of;
+  END_ENTITY;
+
+  ENTITY offer
+    SUBTYPE OF(socially_constructed_activity);
+      SELF\socially_constructed_activity.member_of : OPTIONAL SET [1:?] OF class_of_offer;
+      SELF\socially_constructed_activity.part_of   : OPTIONAL SET [1:1] OF agree_contract;
+  END_ENTITY;
+
+  ENTITY offer_for_goods
+    SUBTYPE OF(offer);
+      SELF\activity.references : SET [1:1] OF exchange_of_goods_and_money;
+      SELF\offer.part_of       : OPTIONAL SET [1:1] OF offer_and_acceptance_for_goods;
+  END_ENTITY;
+
+  ENTITY exchange_of_goods_and_money
+    SUBTYPE OF(contract_execution);
+      SELF\contract_execution.part_of : SET [1:1] OF sale_of_goods;
+    INVERSE
+      consists_of_                    : SET [1:1] OF transfer_of_ownership_of_money FOR part_of;
+      SELF\activity.consists_of       : SET [1:1] OF transfer_of_ownership FOR part_of;
+  END_ENTITY;
+
+  ENTITY contract_execution
+    SUBTYPE OF(agreement_execution);
+      SELF\agreement_execution.member_of : OPTIONAL SET [1:?] OF class_of_contract_execution;
+      SELF\agreement_execution.part_of   : SET [1:1] OF contract_process;
+  END_ENTITY;
+
+  ENTITY agreement_execution
+    SUBTYPE OF(socially_constructed_activity);
+      SELF\socially_constructed_activity.member_of : OPTIONAL SET [1:?] OF class_of_agreement_execution;
+      SELF\socially_constructed_activity.part_of   : SET [1:1] OF agreement_process;
+  END_ENTITY;
+
+  ENTITY transfer_of_ownership
+    SUBTYPE OF(socially_constructed_activity);
+      causes_beginning                           : SET [1:1] OF beginning_of_ownership;
+      causes_ending                              : SET [1:1] OF ending_of_ownership;
+      SELF\activity.references                   : SET [1:1] OF asset;
+      SELF\socially_constructed_activity.part_of : OPTIONAL SET [1:1] OF exchange_of_goods_and_money;
+    INVERSE
+      consists_of_participant_                   : SET [1:1] OF transferee FOR participant_in;
+      SELF\activity.consists_of_participant      : SET [1:1] OF transferor FOR participant_in;
+  END_ENTITY;
+
+  ENTITY transfer_of_ownership_of_money
+    SUBTYPE OF(transfer_of_ownership);
+      SELF\transfer_of_ownership.references : SET [1:1] OF money_asset;
+      SELF\transfer_of_ownership.part_of    : OPTIONAL SET [1:1] OF exchange_of_goods_and_money;
+  END_ENTITY;
+
+  ENTITY beginning_of_ownership
+    SUBTYPE OF(event);
+  END_ENTITY;
+
+  ENTITY event
+    SUBTYPE OF(spatio_temporal_extent);
+      SELF\spatio_temporal_extent.member_of : OPTIONAL SET [1:?] OF class_of_event;
+  END_ENTITY;
+
+  ENTITY point_in_time
+    SUBTYPE OF(event);
+      SELF\event.member_of : OPTIONAL SET [1:?] OF class_of_point_in_time;
+  END_ENTITY;
+
+  ENTITY ending_of_ownership
+    SUBTYPE OF(event);
+  END_ENTITY;
+
+  ENTITY transferee
+    SUBTYPE OF(state_of_party, participant);
+      SELF\participant.participant_in : SET [1:?] OF transfer_of_ownership;
+  END_ENTITY;
+
+  ENTITY transferor
+    SUBTYPE OF(state_of_party, participant);
+      SELF\state_of_party.temporal_part_of : OPTIONAL SET [1:1] OF owner;
+      SELF\participant.participant_in      : SET [1:?] OF transfer_of_ownership;
+  END_ENTITY;
+
+  ENTITY acceptance_of_offer
+    SUBTYPE OF(socially_constructed_activity);
+      SELF\activity.references                   : SET [1:1] OF offer;
+      SELF\socially_constructed_activity.part_of : SET [1:1] OF agree_contract;
+  END_ENTITY;
+
+  ENTITY acceptance_of_offer_for_goods
+    SUBTYPE OF(acceptance_of_offer);
+      SELF\acceptance_of_offer.references : SET [1:1] OF offer_for_goods;
+      SELF\acceptance_of_offer.part_of    : SET [1:1] OF offer_and_acceptance_for_goods;
+  END_ENTITY;
+
+  ENTITY association
+    SUBTYPE OF(individual, state_of_association);
+      SELF\individual.member_of      : OPTIONAL SET [1:?] OF class_of_association;
+      SELF\individual.member_of_kind : SET [1:?] OF kind_of_association;
+    INVERSE
+      consists_of_participant        : SET [1:?] OF participant FOR participant_in;
+  END_ENTITY;
+
+  ENTITY state_of_association
+    SUBTYPE OF(state);
+      SELF\state.temporal_part_of : OPTIONAL SET [1:?] OF association;
+      SELF\state.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_association;
+  END_ENTITY;
+
+  ENTITY ownership
+    SUBTYPE OF(association);
+      SELF\spatio_temporal_extent.ending       : OPTIONAL ending_of_ownership;
+      SELF\spatio_temporal_extent.beginning    : beginning_of_ownership;
+    INVERSE
+      SELF\association.consists_of_participant : SET [1:1] OF owner FOR participant_in;
+      consists_of_participant_                 : SET [1:1] OF asset FOR participant_in;
+  END_ENTITY;
+
+  ENTITY employment
+    SUBTYPE OF(association);
+    INVERSE
+      SELF\association.consists_of_participant : SET [1:1] OF employer FOR participant_in;
+      consists_of_participant_                 : SET [1:1] OF employee FOR participant_in;
+  END_ENTITY;
+
+  ENTITY employer
+    SUBTYPE OF(state_of_party, participant);
+      SELF\participant.participant_in : SET [1:1] OF employment;
+  END_ENTITY;
+
+  ENTITY employee
+    SUBTYPE OF(state_of_person, participant);
+      SELF\participant.participant_in : SET [1:1] OF employment;
+  END_ENTITY;
+
+  ENTITY representation_by_sign
+    SUBTYPE OF(association);
+      represents                 : SET [1:?] OF thing;
+      SELF\association.member_of : OPTIONAL SET [1:?] OF class_of_representation;
+      member_of_                 : SET [1:1] OF representation_by_pattern;
+    INVERSE
+      consists_of_               : SET [1:?] OF recognizing_language_community FOR participant_in;
+      consists_of                : SET [1:?] OF sign FOR participant_in;
+  END_ENTITY;
+
+  ENTITY class_of_representation;
+  END_ENTITY;
+
+  ENTITY representation_by_pattern
+    SUBTYPE OF(class_of_representation);
+      represented            : SET [1:?] OF thing;
+      consists_of_by_class   : SET [1:1] OF pattern;
+      consists_of_in_members : SET [1:?] OF recognizing_language_community;
+  END_ENTITY;
+
+  ENTITY identification
+    SUBTYPE OF(representation_by_pattern);
+  END_ENTITY;
+
+  ENTITY identification_of_physical_quantity
+    SUBTYPE OF(identification);
+      SELF\representation_by_pattern.represented                         : SET [1:1] OF physical_quantity;
+      SELF\representation_by_pattern.consists_of_by_class RENAMED value_ : SET [1:1] OF REAL;
+      uses                                                               : scale;
+  END_ENTITY;
+
+  ENTITY description
+    SUBTYPE OF(representation_by_pattern);
+  END_ENTITY;
+
+  ENTITY definition
+    SUBTYPE OF(representation_by_pattern);
+      SELF\representation_by_pattern.represented : SET [1:1] OF class;
+  END_ENTITY;
+
+  ENTITY recognizing_language_community
+    SUBTYPE OF(state_of_language_community, participant);
+      SELF\participant.participant_in : OPTIONAL SET [1:?] OF representation_by_sign;
+  END_ENTITY;
+
+  ENTITY state_of_language_community
+    SUBTYPE OF(state_of_organization);
+      SELF\state_of_organization.temporal_part_of : OPTIONAL SET [1:?] OF language_community;
+  END_ENTITY;
+
+  ENTITY language_community
+    SUBTYPE OF(state_of_language_community, organization);
+  END_ENTITY;
+
+  ENTITY sign
+    SUBTYPE OF(socially_constructed_object, state_of_sign, participant);
+      SELF\socially_constructed_object.member_of : OPTIONAL SET [1:?] OF class_of_sign;
+      member_of_                                 : SET [1:1] OF pattern;
+      SELF\participant.participant_in            : SET [1:?] OF representation_by_sign;
+  END_ENTITY;
+
+  ENTITY state_of_sign
+    SUBTYPE OF(state_of_socially_constructed_object);
+      SELF\state_of_socially_constructed_object.temporal_part_of : OPTIONAL SET [1:?] OF sign;
+      SELF\state_of_socially_constructed_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_sign;
+  END_ENTITY;
+
+  ENTITY organization_component
+    SUBTYPE OF(state_of_organization_component, system_component, socially_constructed_object);
+      SELF\system_component.component_of             : SET [1:1] OF organization;
+      SELF\state_of_organization_component.member_of : OPTIONAL SET [1:?] OF class_of_organization_component;
+      SELF\physical_object.member_of_kind            : OPTIONAL SET [1:?] OF kind_of_organization_component;
+  END_ENTITY;
+
+  ENTITY state_of_organization_component
+    SUBTYPE OF(state_of_system_component, state_of_socially_constructed_object);
+      SELF\state_of_system_component.temporal_part_of : OPTIONAL SET [1:?] OF organization_component;
+      SELF\state_of_system_component.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_organization_component;
+  END_ENTITY;
+
+  ENTITY state_of_position
+    SUBTYPE OF(state_of_organization_component);
+      SELF\state_of_organization_component.temporal_part_of : OPTIONAL SET [1:?] OF position;
+      SELF\state_of_organization_component.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_position;
+  END_ENTITY;
+
+  ENTITY position
+    SUBTYPE OF(organization_component, state_of_position);
+      SELF\organization_component.member_of      : OPTIONAL SET [1:?] OF class_of_position;
+      SELF\organization_component.member_of_kind : OPTIONAL SET [1:?] OF kind_of_position;
+  END_ENTITY;
+
+  ENTITY person_in_position
+    SUBTYPE OF(state_of_position, state_of_person, installed_object);
+      SELF\state_of_position.member_of : OPTIONAL SET [1:?] OF class_of_person_in_position;
+  END_ENTITY;
+
+  ENTITY installed_object
+    SUBTYPE OF(state_of_ordinary_physical_object, state_of_system_component);
+      SELF\state_of_ordinary_physical_object.member_of : OPTIONAL SET [1:?] OF class_of_installed_object;
+  END_ENTITY;
+
+  ENTITY installed_functional_system_component
+    SUBTYPE OF(state_of_functional_system_component, installed_object, state_of_ordinary_functional_object);
+      SELF\state_of_functional_system_component.member_of : OPTIONAL SET [1:?] OF class_of_installed_functional_system_component;
+  END_ENTITY;
+
+  ENTITY in_place_biological_component
+    SUBTYPE OF(state_of_biological_system_component, installed_object, state_of_ordinary_biological_object);
+      SELF\state_of_biological_system_component.member_of : OPTIONAL SET [1:?] OF class_of_in_place_biological_component;
+  END_ENTITY;
+
+  ENTITY state_of_biological_system_component
+    SUBTYPE OF(state_of_biological_object, state_of_system_component);
+      SELF\state_of_biological_object.temporal_part_of : OPTIONAL SET [1:?] OF biological_system_component;
+      SELF\state_of_biological_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_biological_system_component;
+  END_ENTITY;
+
+  ENTITY person
+    SUBTYPE OF(biological_system, state_of_person, party);
+      SELF\biological_system.member_of      : OPTIONAL SET [1:?] OF class_of_person;
+      SELF\biological_system.member_of_kind : OPTIONAL SET [1:?] OF kind_of_person;
+  END_ENTITY;
+
+  ENTITY functional_system
+    SUBTYPE OF(system, state_of_functional_system, ordinary_functional_object);
+      SELF\system.member_of      : OPTIONAL SET [1:?] OF class_of_functional_system;
+      SELF\system.member_of_kind : OPTIONAL SET [1:?] OF kind_of_functional_system;
+  END_ENTITY;
+
+  ENTITY ordinary_functional_object
+    SUBTYPE OF(functional_object, state_of_ordinary_functional_object, ordinary_physical_object);
+      SELF\functional_object.member_of      : OPTIONAL SET [1:?] OF class_of_ordinary_functional_object;
+      SELF\functional_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_ordinary_functional_object;
+  END_ENTITY;
+
+  ENTITY sales_product_instance
+    SUBTYPE OF(state_of_sales_product_instance, ordinary_functional_object);
+      SELF\state_of_sales_product_instance.member_of : OPTIONAL SET [1:?] OF class_of_sales_product_instance;
+  END_ENTITY;
+
+  ENTITY state_of_sales_product_instance
+    SUBTYPE OF(state_of_ordinary_functional_object);
+      SELF\state_of_ordinary_functional_object.temporal_part_of : OPTIONAL SET [1:?] OF sales_product_instance;
+      SELF\state_of_ordinary_functional_object.member_of        : OPTIONAL SET [1:?] OF class_of_state_of_sales_product_instance;
+  END_ENTITY;
+
+  ENTITY requirement
+    SUBTYPE OF(spatio_temporal_extent);
+      defined_by   : SET [1:1] OF requirement_specification;
+      part_of_plan : SET [1:?] OF plan;
+  END_ENTITY;
+
+END_SCHEMA;

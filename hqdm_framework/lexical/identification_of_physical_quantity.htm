@@ -1,0 +1,239 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content ="text/html; charset=ISO-8859-1">
+<title>identification_of_physical_quantity</title>
+</head>
+<body>
+<img src="../img/entity_navbar.gif" alt="Navigation" height="24" width="625" border="0" usemap="#entity-navbar"/><br/>
+<map name="entity-navbar">
+  <area shape="rect" coords="0,0,62,23" alt="Navigate"href="http://www.matthew-west.org.uk/">
+  <area shape="rect" coords="63,0,141,23" alt="Navigate"href="../hqdm_framework.htm">
+  <area shape="rect" coords="142,0,244,23" alt="Navigate"href="../diagrams/diagram_0012.htm">
+  <area shape="rect" coords="245,0,323,23" alt="Navigate"href="#definition">
+  <area shape="rect" coords="324,0,398,23" alt="Navigate"href="#attribute_description">
+  <area shape="rect" coords="399,0,442,23" alt="Navigate"href="#constraint_description">
+  <area shape="rect" coords="443,0,526,23" alt="Navigate"href="#inheritance">
+  <area shape="rect" coords="527,0,623,23" alt="Navigate"href="identification_of_physical_quantity.htm#references">
+</map><p><font face="Arial" size="3" color="#000000"><b>identification_of_physical_quantity</b></font></p><font face="Arial" size="3" color="#000000">                                                                        An identification that identifies a physical_quantity. An identification_of_physical_quantity consists
+                                                                        of a REAL that is a representation of the value_ the physical quantity maps to on the scale.</font><p><font face="Arial" size="3" color="#000000"><u>EXPRESS specification:</u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b><a name="definition">ENTITY</a></b> identification_of_physical_quantity</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>SUBTYPE</b>&nbsp;<b>OF</b>&nbsp;(</font>
+                                                                                        </td>
+                                                                                        <td><font face="Courier New" size="3" color="#000000"><a href="identification.htm">identification</a>);</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000"><b>SELF</b>\representation_by_pattern.represented</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:1] <b>OF</b> <a href="physical_quantity.htm">physical_quantity</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000"><b>SELF</b>\representation_by_pattern.consists_of_by_class <b>RENAMED</b> value_</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:1] <b>OF</b>  <b>REAL</b>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">uses</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><a href="scale.htm">scale</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="3" color="#000000"><u><a name="attribute_description">Attribute definitions:</a></u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>represented</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A relationship type where a member_of an identification_of_physical_quantity<br/>
+                                                                              represents exactly one physical_quantity.<br/>
+                                                                              Note: Represents by class means that each<br/>
+                                                                              member_of an identification_of_physical_<br/>
+                                                                              quantity represents the physical_quantity. For<br/>
+                                                                              example any writing down of 20C represents<br/>
+                                                                              that particular degree of hotness.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>value_</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A relationship type where an identification_of_physical_quantity consists of exactly one REAL as its
+                                                                              value.<br/>
+                                                                              Note 1: The members of the data type REAL provide an identification of a real number.<br/>
+                                                                              Note 2: The relationship name has been renamed from consists of by class to value.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>uses</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A relationship type where an identification_of_physical_quantity uses exactly one scale.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="4" color="#000000"><b><a name="inheritance">Inheritance graph</a></b></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> identification_of_physical_quantity;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="class_of_representation.htm">class_of_representation</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="representation_by_pattern.htm">representation_by_pattern</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">consists_of_in_members</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:?] <b>OF</b> <a href="recognizing_language_community.htm">recognizing_language_community</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="identification.htm">identification</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="identification_of_physical_quantity.htm">identification_of_physical_quantity</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">represented</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:1] <b>OF</b> <a href="physical_quantity.htm">physical_quantity</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">value_</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:1] <b>OF</b>  <b>REAL</b>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">uses</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><a href="scale.htm">scale</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table>
+</body>
+</html>

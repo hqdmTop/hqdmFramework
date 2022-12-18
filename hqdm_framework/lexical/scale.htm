@@ -1,0 +1,231 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content ="text/html; charset=ISO-8859-1">
+<title>scale</title>
+</head>
+<body>
+<img src="../img/entity_navbar.gif" alt="Navigation" height="24" width="625" border="0" usemap="#entity-navbar"/><br/>
+<map name="entity-navbar">
+  <area shape="rect" coords="0,0,62,23" alt="Navigate"href="http://www.matthew-west.org.uk/">
+  <area shape="rect" coords="63,0,141,23" alt="Navigate"href="../hqdm_framework.htm">
+  <area shape="rect" coords="142,0,244,23" alt="Navigate"href="../diagrams/diagram_0012.htm">
+  <area shape="rect" coords="245,0,323,23" alt="Navigate"href="#definition">
+  <area shape="rect" coords="324,0,398,23" alt="Navigate"href="#attribute_description">
+  <area shape="rect" coords="399,0,442,23" alt="Navigate"href="#constraint_description">
+  <area shape="rect" coords="443,0,526,23" alt="Navigate"href="#inheritance">
+  <area shape="rect" coords="527,0,623,23" alt="Navigate"href="scale.htm#references">
+</map><p><font face="Arial" size="3" color="#000000"><b>scale</b></font></p><font face="Arial" size="3" color="#000000">                                                                        A scale is a function from kind_of_physical_quantity to the real numbers.<br/>
+                                                                        Example: the Celsius scale is a mapping from temperature to real number.</font><p><font face="Arial" size="3" color="#000000"><u>EXPRESS specification:</u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b><a name="definition">ENTITY</a></b> scale</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>SUBTYPE</b>&nbsp;<b>OF</b>&nbsp;(</font>
+                                                                                        </td>
+                                                                                        <td><font face="Courier New" size="3" color="#000000"><a href="function_.htm">function_</a>);</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">unit</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="unit_of_measure.htm">unit_of_measure</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">domain</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><a href="kind_of_physical_quantity.htm">kind_of_physical_quantity</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="3" color="#000000"><u><a name="attribute_description">Attribute definitions:</a></u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>unit</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A scale may have at most one unit_of_measure.<br/>
+                                                                              Note 1: A unit_of_measure may apply to more than one scale.<br/>
+                                                                              Note 2: A scale may not have a unit_of_measure. To have a unit_of_measure the points on the scale must
+                                                                              be evenly placed so that adding one means the same thing. This is not true for some scales such as Rockwell
+                                                                              Hardness where the points on the scale are an arbitrary distance apart. A scale will also not have a
+                                                                              unit_of_measure when it is a dimensionless scale.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>domain</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A scale has exactly one kind_of_physical_quantity as its domain.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="4" color="#000000"><b><a name="inheritance">Inheritance graph</a></b></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> scale;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="thing.htm">thing</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class.htm">class</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="abstract_object.htm">abstract_object</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="relationship.htm">relationship</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class_of_relationship.htm">class_of_relationship</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="function_.htm">function_</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="scale.htm">scale</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">unit</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="unit_of_measure.htm">unit_of_measure</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">domain</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><a href="kind_of_physical_quantity.htm">kind_of_physical_quantity</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table>
+</body>
+</html>

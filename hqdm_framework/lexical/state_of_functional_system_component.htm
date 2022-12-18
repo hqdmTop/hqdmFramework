@@ -1,0 +1,609 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-type" content ="text/html; charset=ISO-8859-1">
+<title>state_of_functional_system_component</title>
+</head>
+<body>
+<img src="../img/entity_navbar.gif" alt="Navigation" height="24" width="625" border="0" usemap="#entity-navbar"/><br/>
+<map name="entity-navbar">
+  <area shape="rect" coords="0,0,62,23" alt="Navigate"href="http://www.matthew-west.org.uk/">
+  <area shape="rect" coords="63,0,141,23" alt="Navigate"href="../hqdm_framework.htm">
+  <area shape="rect" coords="142,0,244,23" alt="Navigate"href="../diagrams/diagram_0028.htm">
+  <area shape="rect" coords="245,0,323,23" alt="Navigate"href="#definition">
+  <area shape="rect" coords="324,0,398,23" alt="Navigate"href="#attribute_description">
+  <area shape="rect" coords="399,0,442,23" alt="Navigate"href="#constraint_description">
+  <area shape="rect" coords="443,0,526,23" alt="Navigate"href="#inheritance">
+  <area shape="rect" coords="527,0,623,23" alt="Navigate"href="state_of_functional_system_component.htm#references">
+</map><p><font face="Arial" size="3" color="#000000"><b>state_of_functional_system_component</b></font></p><font face="Arial" size="3" color="#000000">                                                                        A state_of_intentionally_constructed_object that is a system_component or a temporal_part_of a system_component.</font><p><font face="Arial" size="3" color="#000000"><u>EXPRESS specification:</u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b><a name="definition">ENTITY</a></b> state_of_functional_system_component</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>SUBTYPE</b>&nbsp;<b>OF</b>&nbsp;(</font>
+                                                                                        </td>
+                                                                                        <td><font face="Courier New" size="3" color="#000000"><a href="state_of_functional_object.htm">state_of_functional_object</a>, <a href="state_of_system_component.htm">state_of_system_component</a>);</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000"><b>SELF</b>\state_of_functional_object.temporal_part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="functional_system_component.htm">functional_system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000"><b>SELF</b>\state_of_functional_object.member_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class_of_state_of_functional_system_component.htm">class_of_state_of_functional_system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="3" color="#000000"><u><a name="attribute_description">Attribute definitions:</a></u></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>temporal_part_of</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A temporal_part_of relationship type where a state_of_functional_system_component may be a temporal_part_of
+                                                                              one or more functional_system_component.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr valign="top">
+                                                                            <td width="20%"><font face="Arial" size="3" color="#000000"><b>member_of</b></font>
+                                                                            </td>
+                                                                            <td width="1%"><font face="Arial" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                            </td>
+                                                                            <td><font face="Arial" size="3" color="#000000">                                                                              A member_of relationship type where a state_of_functional_system_component may be a member_of one or
+                                                                              more class_of_functional_system_component.</font>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table><p><font face="Arial" size="4" color="#000000"><b><a name="inheritance">Inheritance graph</a></b></font></p>
+                                                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                                                          <tr valign="top">
+                                                                            <td width="2%">
+                                                                            </td>
+                                                                            <td>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> state_of_functional_system_component;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td width="2%">
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="thing.htm">thing</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class.htm">class</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">beginning</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">ending</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part_of_possible_world</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:?] <b>OF</b> <a href="possible_world.htm">possible_world</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">temporal__part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">aggregated_into</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>INVERSE</b></font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">consists__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a> <b>FOR</b> part__of;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state.htm">state</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_intentionally_constructed_object.htm">state_of_intentionally_constructed_object</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="thing.htm">thing</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class.htm">class</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">beginning</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">ending</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part_of_possible_world</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:?] <b>OF</b> <a href="possible_world.htm">possible_world</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">temporal__part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">aggregated_into</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>INVERSE</b></font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">consists__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a> <b>FOR</b> part__of;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state.htm">state</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_physical_object.htm">state_of_physical_object</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_functional_object.htm">state_of_functional_object</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="thing.htm">thing</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class.htm">class</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">beginning</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">ending</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <a href="event.htm">event</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">part_of_possible_world</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> [1:?] <b>OF</b> <a href="possible_world.htm">possible_world</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">temporal__part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">aggregated_into</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="1%"><font face="Courier New" size="3" color="#000000"><b>INVERSE</b></font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">consists__of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>SET</b> <b>OF</b> <a href="spatio_temporal_extent.htm">spatio_temporal_extent</a> <b>FOR</b> part__of;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state.htm">state</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_physical_object.htm">state_of_physical_object</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_system_component.htm">state_of_system_component</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">temporal_part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="system_component.htm">system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class_of_state_of_system_component.htm">class_of_state_of_system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="100%"><font face="Courier New" size="3" color="#000000"><b>ENTITY</b> <a href="state_of_functional_system_component.htm">state_of_functional_system_component</a>;</font>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                      <tr valign="top">
+                                                                                        <td width="2%">
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">temporal_part_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="functional_system_component.htm">functional_system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                          <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                            <tr valign="top">
+                                                                                              <td width="30%" nowrap><font face="Courier New" size="3" color="#000000">member_of</font>
+                                                                                              </td>
+                                                                                              <td width="1%"><font face="Courier New" size="3" color="#000000">&nbsp;:&nbsp;</font>
+                                                                                              </td>
+                                                                                              <td><font face="Courier New" size="3" color="#000000"><b>OPTIONAL</b> <b>SET</b> [1:?] <b>OF</b> <a href="class_of_state_of_functional_system_component.htm">class_of_state_of_functional_system_component</a>;</font>
+                                                                                              </td>
+                                                                                            </tr>
+                                                                                          </table>
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </table>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                              <table width="100%" cellspacing="0" cellpadding="0">
+                                                                                <tr valign="top">
+                                                                                  <td><font face="Courier New" size="3" color="#000000"><b>END_ENTITY</b>;</font>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </table>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </table>
+</body>
+</html>
