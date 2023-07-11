@@ -421,6 +421,7 @@ hqdm:functional_system_component rdfs:subClassOf hqdm:system_component .
 hqdm:functional_system_component_component_of rdfs:domain hqdm:functional_system_component .
 hqdm:functional_system_component_component_of rdfs:range hqdm:functional_system .
 hqdm:functional_system_component_member_of rdfs:domain hqdm:functional_system_component .
+hqdm:functional_system_component_member_of rdfs:range hqdm:class_of_functional_system_component .
 hqdm:functional_system_component_member_of_kind rdfs:domain hqdm:functional_system_component .
 hqdm:functional_system_component_member_of_kind rdfs:range hqdm:kind_of_functional_system_component .
 hqdm:functional_system_member_of rdfs:domain hqdm:functional_system .
@@ -633,6 +634,7 @@ hqdm:organization_component rdfs:subClassOf hqdm:system_component .
 hqdm:organization_component_component_of rdfs:domain hqdm:organization_component .
 hqdm:organization_component_component_of rdfs:range hqdm:organization .
 hqdm:organization_component_member_of rdfs:domain hqdm:organization_component .
+hqdm:organization_component_member_of rdfs:domain hqdm:class_of_organization_component .
 hqdm:organization_component_member_of_kind rdfs:domain hqdm:organization_component .
 hqdm:organization_component_member_of_kind rdfs:range hqdm:kind_of_organization_component .
 hqdm:organization_member_of rdfs:domain hqdm:organization .
