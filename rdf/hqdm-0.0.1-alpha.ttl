@@ -1,5 +1,9 @@
 
 @prefix hqdm: <https://hqdmtop.github.io/hqdm#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 hqdm:abstract_object rdf:type rdfs:Class .
 hqdm:abstract_object rdfs:subClassOf hqdm:thing .
 hqdm:acceptance_of_offer rdf:type rdfs:Class .
