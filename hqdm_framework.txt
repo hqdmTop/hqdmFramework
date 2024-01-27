@@ -594,7 +594,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
     SUBTYPE OF(class_of_state_of_intentionally_constructed_object);
   END_ENTITY;
 
-  ENTITY class_of_socially_contructed_object
+  ENTITY class_of_socially_constructed_object
     SUBTYPE OF(class_of_intentionally_constructed_object, class_of_state_of_socially_constructed_object);
   END_ENTITY;
 
@@ -1058,7 +1058,8 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
       consists_of                : SET [1:?] OF sign FOR participant_in;
   END_ENTITY;
 
-  ENTITY class_of_representation;
+  ENTITY class_of_representation
+    SUBTYPE OF(class_of_association);
   END_ENTITY;
 
   ENTITY representation_by_pattern
