@@ -1058,7 +1058,8 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
       consists_of                : SET [1:?] OF sign FOR participant_in;
   END_ENTITY;
 
-  ENTITY class_of_representation;
+  ENTITY class_of_representation
+    SUBTYPE OF(class_of_association);
   END_ENTITY;
 
   ENTITY representation_by_pattern
