@@ -216,7 +216,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
 
   ENTITY socially_constructed_object
     SUBTYPE OF(intentionally_constructed_object, state_of_socially_constructed_object);
-      SELF\intentionally_constructed_object.member_of      : OPTIONAL SET [1:?] OF class_of_socially_contructed_object;
+      SELF\intentionally_constructed_object.member_of      : OPTIONAL SET [1:?] OF class_of_socially_constructed_object;
       SELF\intentionally_constructed_object.member_of_kind : OPTIONAL SET [1:?] OF kind_of_socially_constructed_object;
   END_ENTITY;
 
@@ -594,12 +594,12 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
     SUBTYPE OF(class_of_state_of_intentionally_constructed_object);
   END_ENTITY;
 
-  ENTITY class_of_socially_contructed_object
+  ENTITY class_of_socially_constructed_object
     SUBTYPE OF(class_of_intentionally_constructed_object, class_of_state_of_socially_constructed_object);
   END_ENTITY;
 
   ENTITY class_of_organization
-    SUBTYPE OF(class_of_state_of_organization, class_of_socially_contructed_object, class_of_party);
+    SUBTYPE OF(class_of_state_of_organization, class_of_socially_constructed_object, class_of_party);
   END_ENTITY;
 
   ENTITY class_of_state_of_organization
@@ -612,7 +612,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY kind_of_socially_constructed_object
-    SUBTYPE OF(class_of_socially_contructed_object, kind_of_intentionally_constructed_object);
+    SUBTYPE OF(class_of_socially_constructed_object, kind_of_intentionally_constructed_object);
   END_ENTITY;
 
   ENTITY kind_of_organization_component
@@ -620,7 +620,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY class_of_organization_component
-    SUBTYPE OF(class_of_state_of_organization_component, class_of_system_component, class_of_socially_contructed_object);
+    SUBTYPE OF(class_of_state_of_organization_component, class_of_system_component, class_of_socially_constructed_object);
   END_ENTITY;
 
   ENTITY class_of_position
@@ -632,7 +632,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY class_of_amount_of_money
-    SUBTYPE OF(class_of_state_of_amount_of_money, class_of_socially_contructed_object, class_of_physical_object);
+    SUBTYPE OF(class_of_state_of_amount_of_money, class_of_socially_constructed_object, class_of_physical_object);
   END_ENTITY;
 
   ENTITY class_of_state_of_amount_of_money
@@ -648,7 +648,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY class_of_socially_constructed_activity
-    SUBTYPE OF(class_of_activity, class_of_socially_contructed_object);
+    SUBTYPE OF(class_of_activity, class_of_socially_constructed_object);
       part_of_by_class  : OPTIONAL SET [1:?] OF class_of_reaching_agreement;
       part_of_by_class_ : OPTIONAL SET [1:?] OF class_of_agreement_execution;
   END_ENTITY;
@@ -804,7 +804,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY class_of_sign
-    SUBTYPE OF(class_of_state_of_sign, class_of_socially_contructed_object);
+    SUBTYPE OF(class_of_state_of_sign, class_of_socially_constructed_object);
   END_ENTITY;
 
   ENTITY class_of_state_of_sign
