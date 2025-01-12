@@ -666,7 +666,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY kind_of_activity
-    SUBTYPE OF(class_of_activity);
+    SUBTYPE OF(class_of_activity, kind_of_individual);
       determines_by_class  : OPTIONAL SET [1:?] OF class;
       references_by_class  : OPTIONAL SET [1:?] OF class;
       causes_by_class      : OPTIONAL SET [1:?] OF class_of_event;
@@ -693,7 +693,7 @@ SCHEMA HQDM_FRAMEWORK 'Version 1.0';
   END_ENTITY;
 
   ENTITY kind_of_association
-    SUBTYPE OF(class_of_association);
+    SUBTYPE OF(class_of_association, kind_of_individual);
     INVERSE
       consists_of_by_class : SET [2:?] OF role FOR part_of_by_class_;
   END_ENTITY;
